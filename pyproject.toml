@@ -49,5 +49,5 @@ packages = ["saathi"]
 warn_unused_ignores = true
 
 [[tool.mypy.overrides]]
-module = "apscheduler.*"
+module = ["apscheduler.*", "langchain.*"]
 ignore_missing_imports = true

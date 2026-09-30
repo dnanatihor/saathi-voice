@@ -340,9 +340,6 @@ class DialogSession:
         self.flow = flow
         self.phrases = phrases
         self.persona = persona if persona is not None else Persona()
-        self._understanding = (
-            understanding if isinstance(understanding, Understanding) else Understanding()
-        )
         if detector is None:
             from saathi.config import emergency_phrase_path, load_config
             from saathi.dialog.emergency import EmergencyDetector as Detector
@@ -353,6 +350,12 @@ class DialogSession:
             self._detector = detector
         else:
             raise TypeError("detector must be an EmergencyDetector")
+        if isinstance(understanding, Understanding):
+            self._understanding = understanding
+        else:
+            from saathi.dialog.offline import OfflineModel
+
+            self._understanding = Understanding(OfflineModel(self._detector))
         self._state = _blank_state(flow, prior_snoozes)
 
     def start(self) -> Beat:

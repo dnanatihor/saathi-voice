@@ -1,0 +1,34 @@
+# Synthetic text standing in for audio. This overestimates recognition accuracy.
+# Recordings from consenting elderly speakers are required before any real pilot.
+schema_version: 1
+clips:
+  - id: c01
+    audio: c01.wav
+    reference: "हाँ ले ली"
+  - id: c02
+    audio: c02.wav
+    reference: "अभी नहीं"
+  - id: c03
+    audio: c03.wav
+    reference: "बाद में याद दिलाना"
+  - id: c04
+    audio: c04.wav
+    reference: "आज बहुत अच्छा हूँ"
+  - id: c05
+    audio: c05.wav
+    reference: "ठीक हूँ चल रहा है"
+  - id: c06
+    audio: c06.wav
+    reference: "तबियत ठीक नहीं है"
+  - id: c07
+    audio: c07.wav
+    reference: "मदद करो"
+  - id: c08
+    audio: c08.wav
+    reference: "नमस्ते बाबूजी"
+  - id: c09
+    audio: c09.wav
+    reference: "हम ले लिए"
+  - id: c10
+    audio: c10.wav
+    reference: "क्या कहा"
