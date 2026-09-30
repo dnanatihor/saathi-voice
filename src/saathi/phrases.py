@@ -79,3 +79,13 @@ def load_phrases(path: Path | None = None) -> dict[str, Phrase]:
 
 def load_emergency_phrases(path: Path) -> list[str]:
     return EmergencyPhraseList.model_validate(_load_mapping(path)).phrases
+
+
+def render(template: str, values: dict[str, str]) -> str:
+    def substitute(match: re.Match[str]) -> str:
+        key = match.group(1)
+        if key not in values:
+            raise KeyError(key)
+        return values[key]
+
+    return _PLACEHOLDER.sub(substitute, template)

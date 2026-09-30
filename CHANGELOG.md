@@ -8,4 +8,5 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Phase 1 text dialog engine: deterministic emergency rules, keyword NLU fallback, and LangGraph flows for reminders and check-ins.
 - Phase 0 scaffold: SQLModel domain models, SQLite, config, Hindi phrase file, utterance set, and dialog scripts.
