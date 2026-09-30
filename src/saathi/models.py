@@ -43,6 +43,7 @@ class EventType(StrEnum):
     taken = "taken"
     snoozed = "snoozed"
     missed = "missed"
+    missed_by_system = "missed_by_system"
     checkin_result = "checkin_result"
     emergency = "emergency"
     notification_sent = "notification_sent"
@@ -100,6 +101,8 @@ class Caregiver(SQLModel, table=True):
     login: str
     relationship: str
     notification_channel: NotificationChannel
+    password_hash: str = ""
+    channel_address: str = ""
 
 
 class Elder(SQLModel, table=True):
@@ -184,6 +187,9 @@ class Session(SQLModel, table=True):
     schedule_id: int | None = Field(default=None, foreign_key="schedules.id")
     kind: SessionKind
     state: str
+    prior_snoozes: int = 0
+    dialog_state_json: str = ""
+    transcript: str = ""
     started_at: datetime = Field(default_factory=utc_now)
     ended_at: datetime | None = None
 
@@ -197,3 +203,32 @@ class Event(SQLModel, table=True):
     event_type: EventType
     created_at: datetime = Field(default_factory=utc_now)
     payload_json: str = "{}"
+
+
+class DoseOccurrence(SQLModel, table=True):
+    __tablename__ = "dose_occurrences"
+
+    id: int | None = Field(default=None, primary_key=True)
+    schedule_id: int = Field(foreign_key="schedules.id")
+    scheduled_for: str
+    outcome: str
+    session_id: int | None = Field(default=None, foreign_key="sessions.id")
+
+
+class SnoozeReminder(SQLModel, table=True):
+    __tablename__ = "snooze_reminders"
+
+    id: int | None = Field(default=None, primary_key=True)
+    elder_id: int = Field(foreign_key="elders.id")
+    schedule_id: int = Field(foreign_key="schedules.id")
+    due_at: str
+    prior_snoozes: int
+    done: bool = False
+
+
+class LinkCode(SQLModel, table=True):
+    __tablename__ = "link_codes"
+
+    code: str = Field(primary_key=True)
+    caregiver_id: int = Field(foreign_key="caregivers.id")
+    created_at: datetime = Field(default_factory=utc_now)

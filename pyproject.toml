@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Hindi voice assistant for elders: medication reminders and daily check-ins."
 requires-python = ">=3.11"
 dependencies = [
+    "apscheduler>=3.10,<4",
+    "fastapi>=0.142.2",
     "langgraph>=1.2.12",
     "pyyaml>=6",
     "sqlmodel>=0.0.22",
@@ -45,3 +47,7 @@ strict = true
 mypy_path = "src"
 packages = ["saathi"]
 warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "apscheduler.*"
+ignore_missing_imports = true

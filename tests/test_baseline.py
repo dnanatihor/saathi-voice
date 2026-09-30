@@ -53,7 +53,8 @@ def test_ci_workflow_runs_tooling() -> None:
     workflow = (REPO_ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
     for command in CI_COMMANDS:
         assert command in workflow
-    assert "web/" not in workflow
+    assert "npm test" in workflow
+    assert "npm run build" in workflow
 
 
 def test_license_is_apache() -> None:

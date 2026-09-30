@@ -368,6 +368,19 @@ class DialogSession:
             raise DialogError("session is closed")
         return self._step("silence", "")
 
+    def export_state(self) -> str:
+        from json import dumps
+
+        return dumps(self._state)
+
+    def restore(self, raw: str) -> None:
+        from json import loads
+
+        loaded = loads(raw)
+        if not isinstance(loaded, dict):
+            raise DialogError("saved dialog state is invalid")
+        self._state = _copy_state(loaded)
+
     def _step(self, kind: str, text: str) -> Beat:
         from saathi.dialog.nlu import Understanding
 
