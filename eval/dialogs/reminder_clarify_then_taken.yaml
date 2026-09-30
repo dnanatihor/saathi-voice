@@ -1,0 +1,20 @@
+schema_version: 1
+id: reminder_clarify_then_taken
+flow: medication_reminder
+prior_snoozes: 0
+opening:
+  states: [Greet, Remind, AskTaken]
+  phrase_ids: [greet.reminder, remind.dose, remind.instructions, ask.taken]
+  events: [reminder_sent]
+  notifications: []
+turns:
+  - user: "क्या कहा?"
+    states: [Clarify, AskTaken]
+    phrase_ids: [clarify.taken, ask.taken]
+    events: []
+    notifications: []
+  - user: "हाँ, ले ली"
+    states: [Taken, Close]
+    phrase_ids: [ack.taken, close.polite]
+    events: [taken]
+    notifications: []

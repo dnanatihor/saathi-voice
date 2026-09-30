@@ -1,0 +1,72 @@
+# Every sentence the assistant speaks, plus notification templates.
+# Spoken lines are at most 12 whitespace-separated words. Placeholders count as one word.
+phrases:
+  greet.reminder:
+    text: "नमस्ते {honorific}। मैं साथी हूँ।"
+    spoken: true
+  remind.dose:
+    text: "{honorific}, {spoken_label} का समय है।"
+    spoken: true
+  remind.instructions:
+    text: "{instructions}"
+    spoken: true
+  ask.taken:
+    text: "क्या आपने {spoken_label} ले ली?"
+    spoken: true
+  ack.taken:
+    text: "बहुत अच्छा {honorific}। धन्यवाद।"
+    spoken: true
+  ack.snooze:
+    text: "ठीक है {honorific}। पंद्रह मिनट बाद याद दिलाऊँगी।"
+    spoken: true
+  clarify.taken:
+    text: "{honorific}, कृपया हाँ या नहीं बताइए।"
+    spoken: true
+  ack.missed:
+    text: "{honorific}, मैं परिवार को बता देती हूँ।"
+    spoken: true
+  close.polite:
+    text: "ठीक है {honorific}। अपना ख्याल रखिए।"
+    spoken: true
+  emergency.alert:
+    text: "{honorific}, परिवार को बताया जा रहा है। हो सके तो 112 बुलाएँ।"
+    spoken: true
+  checkin.greet:
+    text: "नमस्ते {honorific}।"
+    spoken: true
+  checkin.ask:
+    text: "{honorific}, आज कैसा महसूस हो रहा है?"
+    spoken: true
+  checkin.good:
+    text: "सुनकर अच्छा लगा {honorific}।"
+    spoken: true
+  checkin.okay:
+    text: "ठीक है {honorific}। अपना ख्याल रखिए।"
+    spoken: true
+  checkin.unwell_offer:
+    text: "क्या आप परिवार से बात करना चाहेंगे?"
+    spoken: true
+  checkin.notify_ack:
+    text: "मैं परिवार को बता देती हूँ।"
+    spoken: true
+  silence.repeat:
+    text: "{honorific}, क्या आप सुन रहे हैं?"
+    spoken: true
+  silence.end:
+    text: "ठीक है {honorific}। मैं बाद में बात करूँगी।"
+    spoken: true
+  consent.ask:
+    text: "{honorific}, क्या आप याद दिलाने की अनुमति देते हैं?"
+    spoken: true
+  consent.thanks:
+    text: "धन्यवाद {honorific}।"
+    spoken: true
+  summary.checkin:
+    text: "{honorific} ने कहा, {elder_words}"
+    spoken: false
+  notify.missed:
+    text: "{honorific} की {spoken_label} नहीं ली गई।"
+    spoken: false
+  notify.emergency:
+    text: "{honorific} ने कहा, {snippet}"
+    spoken: false

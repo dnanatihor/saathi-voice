@@ -1,0 +1,16 @@
+timezone: Asia/Kolkata
+call_windows:
+  start: "08:00"
+  end: "20:00"
+snooze:
+  interval_minutes: 15
+  limit: 2
+silence_timeout_seconds: 6
+speech_rate: 0.85
+retention_days: 30
+providers:
+  stt: null
+  tts: null
+  llm_model_id: null
+  notifier: telegram
+emergency_phrase_list: src/saathi/dialog/phrases/emergency.yaml

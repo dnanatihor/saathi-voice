@@ -1,0 +1,22 @@
+schema_version: 1
+id: reminder_silence
+flow: medication_reminder
+prior_snoozes: 0
+opening:
+  states: [Greet, Remind, AskTaken]
+  phrase_ids: [greet.reminder, remind.dose, remind.instructions, ask.taken]
+  events: [reminder_sent]
+  notifications: []
+turns:
+  - user: ""
+    kind: silence
+    states: [AskTaken]
+    phrase_ids: [silence.repeat]
+    events: []
+    notifications: []
+  - user: ""
+    kind: silence
+    states: [Close]
+    phrase_ids: [silence.end]
+    events: []
+    notifications: []

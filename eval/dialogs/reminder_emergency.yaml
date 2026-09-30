@@ -1,0 +1,19 @@
+schema_version: 1
+id: reminder_emergency
+flow: medication_reminder
+prior_snoozes: 0
+opening:
+  states: [Greet, Remind, AskTaken]
+  phrase_ids: [greet.reminder, remind.dose, remind.instructions, ask.taken]
+  events: [reminder_sent]
+  notifications: []
+turns:
+  - user: "सीने में दर्द हो रहा है"
+    states: [Emergency]
+    phrase_ids: [emergency.alert]
+    events: [emergency]
+    notifications:
+      - audience: emergency_contacts
+        reason: emergency
+        template_id: notify.emergency
+    session_remains_open: true

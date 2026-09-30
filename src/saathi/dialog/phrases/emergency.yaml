@@ -1,0 +1,18 @@
+# Deterministic emergency phrases (SPEC.md §5.2).
+# Match these phrases. Do not match a bare "दर्द".
+# "दर्द नहीं है" and "सीने में दर्द नहीं है" must not trigger.
+phrases:
+  - सीने में दर्द
+  - साँस नहीं
+  - गिर गया
+  - गिर गई
+  - मदद करो
+  - बचाओ
+  - chest pain
+  - help
+  - seene mein dard
+  - saans nahi
+  - gir gaya
+  - gir gayi
+  - madad karo
+  - bachao

@@ -1,0 +1,15 @@
+schema_version: 1
+id: checkin_good
+flow: daily_checkin
+prior_snoozes: 0
+opening:
+  states: [Greet, AskWellbeing]
+  phrase_ids: [checkin.greet, checkin.ask]
+  events: []
+  notifications: []
+turns:
+  - user: "आज बहुत अच्छा हूँ"
+    states: [Close]
+    phrase_ids: [checkin.good]
+    events: [checkin_result]
+    notifications: []

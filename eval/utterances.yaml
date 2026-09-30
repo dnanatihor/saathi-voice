@@ -1,0 +1,1052 @@
+schema_version: 1
+utterances:
+- id: u001
+  text: सीने में दर्द हो रहा है
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u002
+  text: साँस नहीं आ रही
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u003
+  text: मैं गिर गया
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u004
+  text: अम्मा गिर गई
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u005
+  text: मदद करो जल्दी
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u006
+  text: बचाओ
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u007
+  text: अभी सीने में दर्द है
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u008
+  text: साँस नहीं बन रही
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u009
+  text: बाबूजी गिर गया
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u010
+  text: दादी गिर गई
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u011
+  text: प्लीज मदद करो
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u012
+  text: बचाओ मुझे
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u013
+  text: सीने में दर्द बढ़ा है
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u014
+  text: साँस नहीं ले पा रहा
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u015
+  text: मैं गिर गया फर्श पर
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u016
+  text: बचाओ, गिर गई
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u017
+  text: chest pain ho raha hai
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u018
+  text: please help me
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u019
+  text: seene mein dard hai
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u020
+  text: saans nahi aa rahi
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u021
+  text: main gir gaya
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u022
+  text: woh gir gayi
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u023
+  text: madad karo
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u024
+  text: bachao
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u025
+  text: mujhe chest pain hai
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u026
+  text: help me now
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u027
+  text: saans nahi
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u028
+  text: seene mein dard
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u029
+  text: gir gaya hoon
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u030
+  text: gir gayi hain
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u031
+  text: madad karo jaldi
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u032
+  text: bachao please
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u033
+  text: हमका सीने में दर्द बा
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u034
+  text: साँस नहीं होत बा
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u035
+  text: हम गिर गया
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u036
+  text: उ गिर गई
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u037
+  text: मदद करो ना
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u038
+  text: बचाओ हमका
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u039
+  text: chest pain बा
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u040
+  text: help करीं
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u041
+  text: seene mein dard ba
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u042
+  text: saans nahi ba
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u043
+  text: हदये में बहुत दरद बा
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u044
+  text: saans atak gayi hai
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u045
+  text: meri saans ruk gayi
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u046
+  text: gir pare hain
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u047
+  text: behosh ho gaye hain
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u048
+  text: dil ghabraya hai bahut
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u049
+  text: हम गिर पड़ल हईं
+  intent: emergency
+  script: dialect
+  mentions_pain_or_health: false
+- id: u050
+  text: सांस फूल रही है
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u051
+  text: खून निकल रहा है
+  intent: emergency
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u052
+  text: bahut bura haal hai aao
+  intent: emergency
+  script: roman
+  mentions_pain_or_health: false
+- id: u053
+  text: कल घुटना में हल्का दर्द था, आज ठीक है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u054
+  text: पीठ में कभी कभी दर्द होता है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u055
+  text: सुबह सिर में दर्द था, अब आराम है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u056
+  text: जोड़ों का पुराना दर्द है, आज सामान्य हूँ
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u057
+  text: गले में खराश थी, अब बेहतर है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u058
+  text: नींद कम हुई, तबीयत ठीक है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u059
+  text: पेट ठीक है, खाना खा लिया
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u060
+  text: थकान है बस, बीमारी नहीं
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u061
+  text: दाँत में कभी दर्द होता है, आज नहीं
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u062
+  text: हाथ में पुराना दर्द है, काम कर लिया
+  intent: other
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u063
+  text: कल बुखार जैसा लगा, आज बिलकुल ठीक
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u064
+  text: कमर दर्द रहता है, आज चल फिर रहा हूँ
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u065
+  text: दवा समय पर ली, कोई तकलीफ नहीं
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u066
+  text: रात को खाँसी हुई, अब शांत है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u067
+  text: दर्द नहीं है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u068
+  text: सीने में दर्द नहीं है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u069
+  text: kal ghutne mein halka dard tha, aaj theek hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u070
+  text: peeth mein kabhi dard hota hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u071
+  text: sir mein dard tha subah, ab theek
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u072
+  text: jodon ka dard purana hai, aaj normal
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u073
+  text: gala kharab tha, ab better hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u074
+  text: neend kam hui, tabiyat theek hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u075
+  text: pet theek hai, khana kha liya
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: true
+- id: u076
+  text: thakaan hai bas, beemari nahi
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u077
+  text: daant mein dard hota hai kabhi, aaj nahi
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u078
+  text: haath ka dard purana hai
+  intent: other
+  script: roman
+  mentions_pain_or_health: true
+- id: u079
+  text: kal fever jaisa laga, aaj theek
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: true
+- id: u080
+  text: kamar dard rehta hai, aaj chal raha hoon
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u081
+  text: dawai time par li, koi takleef nahi
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: true
+- id: u082
+  text: raat ko khansi hui, ab shant hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u083
+  text: seene mein dard nahi hai, main theek hoon
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u084
+  text: thoda kamzor hoon, par theek hoon
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: true
+- id: u085
+  text: घुटना में दरद रहत रहल, आज ठीक बानी
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u086
+  text: हम ठीक हईं, बस थकान बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u087
+  text: पेट ठीक बा, खाना खा लिए
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: true
+- id: u088
+  text: सिर दरद सुबह रहल, अब आराम बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u089
+  text: हमार जोड़ा में पुरान दरद बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u090
+  text: नींद कम भइल, तबीयत ठीक बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u091
+  text: गला खराब रहल, अब ठीक बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u092
+  text: हम कमजोर बानी, पर चल फिर लेइत हईं
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u093
+  text: खांसी रात में भइल, अब शांत बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u094
+  text: दवा ले लिए, कउनो तकलीफ नइखे
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: true
+- id: u095
+  text: दरद नइखे, हम ठीक बानी
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: true
+- id: u096
+  text: हाँ, ले ली
+  intent: taken
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u097
+  text: ले लिया
+  intent: taken
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u098
+  text: दवाई खा ली
+  intent: taken
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u099
+  text: हाँ ली
+  intent: taken
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u100
+  text: मैंने ले ली है
+  intent: taken
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u101
+  text: हाँ बाबूजी ले ली
+  intent: taken
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u102
+  text: haan le li
+  intent: taken
+  script: roman
+  mentions_pain_or_health: false
+- id: u103
+  text: le liya
+  intent: taken
+  script: roman
+  mentions_pain_or_health: false
+- id: u104
+  text: dawai kha li
+  intent: taken
+  script: roman
+  mentions_pain_or_health: false
+- id: u105
+  text: haan, le li
+  intent: taken
+  script: roman
+  mentions_pain_or_health: false
+- id: u106
+  text: main le liya hoon
+  intent: taken
+  script: roman
+  mentions_pain_or_health: false
+- id: u107
+  text: हम ले लिए नी
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u108
+  text: ले लिहनी
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u109
+  text: हाँ हम खा लिए
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u110
+  text: हम दवा ले लिए
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u111
+  text: ली लेले बानी
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u112
+  text: हम ले लिए हईं
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u113
+  text: हाँ खा लीं
+  intent: taken
+  script: dialect
+  mentions_pain_or_health: false
+- id: u114
+  text: अभी नहीं
+  intent: not_yet
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u115
+  text: नहीं ली
+  intent: not_yet
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u116
+  text: अभी नहीं ली है
+  intent: not_yet
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u117
+  text: नहीं खाई
+  intent: not_yet
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u118
+  text: नहीं ली मैंने
+  intent: not_yet
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u119
+  text: abhi nahi
+  intent: not_yet
+  script: roman
+  mentions_pain_or_health: false
+- id: u120
+  text: nahi li
+  intent: not_yet
+  script: roman
+  mentions_pain_or_health: false
+- id: u121
+  text: abhi tak nahi
+  intent: not_yet
+  script: roman
+  mentions_pain_or_health: false
+- id: u122
+  text: abhi nahi li hai
+  intent: not_yet
+  script: roman
+  mentions_pain_or_health: false
+- id: u123
+  text: अभी नइखे लेले
+  intent: not_yet
+  script: dialect
+  mentions_pain_or_health: false
+- id: u124
+  text: हम नाहीं लीनी
+  intent: not_yet
+  script: dialect
+  mentions_pain_or_health: false
+- id: u125
+  text: नहीं खइले
+  intent: not_yet
+  script: dialect
+  mentions_pain_or_health: false
+- id: u126
+  text: हम अभी नइखे खइले
+  intent: not_yet
+  script: dialect
+  mentions_pain_or_health: false
+- id: u127
+  text: बाद में
+  intent: later
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u128
+  text: थोड़ी देर में
+  intent: later
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u129
+  text: बाद में ले लूँगा
+  intent: later
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u130
+  text: पंद्रह मिनट बाद
+  intent: later
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u131
+  text: baad mein
+  intent: later
+  script: roman
+  mentions_pain_or_health: false
+- id: u132
+  text: thodi der mein
+  intent: later
+  script: roman
+  mentions_pain_or_health: false
+- id: u133
+  text: baad mein lena
+  intent: later
+  script: roman
+  mentions_pain_or_health: false
+- id: u134
+  text: baad mein yaad dilana
+  intent: later
+  script: roman
+  mentions_pain_or_health: false
+- id: u135
+  text: बादे में लेब
+  intent: later
+  script: dialect
+  mentions_pain_or_health: false
+- id: u136
+  text: थोड़ देर बाद
+  intent: later
+  script: dialect
+  mentions_pain_or_health: false
+- id: u137
+  text: रउआ बाद में कहब
+  intent: later
+  script: dialect
+  mentions_pain_or_health: false
+- id: u138
+  text: फेर से बाद में
+  intent: later
+  script: dialect
+  mentions_pain_or_health: false
+- id: u139
+  text: क्या कहा?
+  intent: confused
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u140
+  text: कौन बोल रहे हो?
+  intent: confused
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u141
+  text: समझ नहीं आया
+  intent: confused
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u142
+  text: क्या बात है
+  intent: confused
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u143
+  text: kya?
+  intent: confused
+  script: roman
+  mentions_pain_or_health: false
+- id: u144
+  text: samajh nahi aaya
+  intent: confused
+  script: roman
+  mentions_pain_or_health: false
+- id: u145
+  text: phir se bolo
+  intent: confused
+  script: roman
+  mentions_pain_or_health: false
+- id: u146
+  text: dobara bolo
+  intent: confused
+  script: roman
+  mentions_pain_or_health: false
+- id: u147
+  text: का बोलल?
+  intent: confused
+  script: dialect
+  mentions_pain_or_health: false
+- id: u148
+  text: हम ना समझले
+  intent: confused
+  script: dialect
+  mentions_pain_or_health: false
+- id: u149
+  text: फेर से कहा
+  intent: confused
+  script: dialect
+  mentions_pain_or_health: false
+- id: u150
+  text: का हई?
+  intent: confused
+  script: dialect
+  mentions_pain_or_health: false
+- id: u151
+  text: बहुत अच्छा हूँ
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u152
+  text: बढ़िया हूँ आज
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u153
+  text: मैं स्वस्थ हूँ
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u154
+  text: आज बढ़िया दिन है
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u155
+  text: मस्ती में हूँ
+  intent: wellbeing_good
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u156
+  text: bahut accha hoon
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: false
+- id: u157
+  text: bahut badhiya
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: false
+- id: u158
+  text: main badhiya hoon
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: false
+- id: u159
+  text: aaj maza aa raha
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: false
+- id: u160
+  text: aaj bahut accha din hai
+  intent: wellbeing_good
+  script: roman
+  mentions_pain_or_health: false
+- id: u161
+  text: हम बढ़िया बानी
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: false
+- id: u162
+  text: आज मस्त बानी
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: false
+- id: u163
+  text: तबीयत बढ़िया बा
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: false
+- id: u164
+  text: हम ठीक हईं
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: false
+- id: u165
+  text: बढ़िया लगात बा
+  intent: wellbeing_good
+  script: dialect
+  mentions_pain_or_health: false
+- id: u166
+  text: ठीक हूँ
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u167
+  text: चल रहा है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u168
+  text: ऐसा ही है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u169
+  text: साधारण दिन है
+  intent: wellbeing_okay
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u170
+  text: theek hoon
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: false
+- id: u171
+  text: chal raha hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: false
+- id: u172
+  text: aisa hi hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: false
+- id: u173
+  text: waisa hi hai
+  intent: wellbeing_okay
+  script: roman
+  mentions_pain_or_health: false
+- id: u174
+  text: चलत बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: false
+- id: u175
+  text: ठीक बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: false
+- id: u176
+  text: ऐसा ही बा
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: false
+- id: u177
+  text: हम वैसे ही हईं
+  intent: wellbeing_okay
+  script: dialect
+  mentions_pain_or_health: false
+- id: u178
+  text: तबियत ठीक नहीं है
+  intent: wellbeing_unwell
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u179
+  text: आज कमजोर हूँ
+  intent: wellbeing_unwell
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u180
+  text: शरीर भारी लग रहा है
+  intent: wellbeing_unwell
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u181
+  text: थकान बहुत है
+  intent: wellbeing_unwell
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u182
+  text: उदास हूँ
+  intent: wellbeing_unwell
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u183
+  text: मन नहीं लग रहा
+  intent: wellbeing_unwell
+  script: devanagari
+  mentions_pain_or_health: true
+- id: u184
+  text: tabiyat theek nahi hai
+  intent: wellbeing_unwell
+  script: roman
+  mentions_pain_or_health: true
+- id: u185
+  text: aaj kamzor hoon
+  intent: wellbeing_unwell
+  script: roman
+  mentions_pain_or_health: true
+- id: u186
+  text: shareer bhari lag raha hai
+  intent: wellbeing_unwell
+  script: roman
+  mentions_pain_or_health: true
+- id: u187
+  text: bahut thakawat hai
+  intent: wellbeing_unwell
+  script: roman
+  mentions_pain_or_health: true
+- id: u188
+  text: neend nahi aayi
+  intent: wellbeing_unwell
+  script: roman
+  mentions_pain_or_health: true
+- id: u189
+  text: dum kam hai
+  intent: wellbeing_unwell
+  script: roman
+  mentions_pain_or_health: true
+- id: u190
+  text: तबीयत खराब बा
+  intent: wellbeing_unwell
+  script: dialect
+  mentions_pain_or_health: true
+- id: u191
+  text: हम कमजोर बानी आज
+  intent: wellbeing_unwell
+  script: dialect
+  mentions_pain_or_health: true
+- id: u192
+  text: शरीर भारी बा
+  intent: wellbeing_unwell
+  script: dialect
+  mentions_pain_or_health: true
+- id: u193
+  text: बहुत थकान बा
+  intent: wellbeing_unwell
+  script: dialect
+  mentions_pain_or_health: true
+- id: u194
+  text: हमार मन ना लागल
+  intent: wellbeing_unwell
+  script: dialect
+  mentions_pain_or_health: true
+- id: u195
+  text: कमजोरी बा आज
+  intent: wellbeing_unwell
+  script: dialect
+  mentions_pain_or_health: true
+- id: u196
+  text: आज मौसम अच्छा है
+  intent: other
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u197
+  text: टीवी चालू है
+  intent: other
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u198
+  text: आप कौन हो
+  intent: other
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u199
+  text: खाना बन गया
+  intent: other
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u200
+  text: बच्चे आए थे
+  intent: other
+  script: devanagari
+  mentions_pain_or_health: false
+- id: u201
+  text: mausam accha hai
+  intent: other
+  script: roman
+  mentions_pain_or_health: false
+- id: u202
+  text: tv on hai
+  intent: other
+  script: roman
+  mentions_pain_or_health: false
+- id: u203
+  text: kaun ho aap
+  intent: other
+  script: roman
+  mentions_pain_or_health: false
+- id: u204
+  text: khana ban gaya
+  intent: other
+  script: roman
+  mentions_pain_or_health: false
+- id: u205
+  text: bachche aaye the
+  intent: other
+  script: roman
+  mentions_pain_or_health: false
+- id: u206
+  text: आज मौसम बढ़िया बा
+  intent: other
+  script: dialect
+  mentions_pain_or_health: false
+- id: u207
+  text: टीवी चलत बा
+  intent: other
+  script: dialect
+  mentions_pain_or_health: false
+- id: u208
+  text: रउआ के हईं
+  intent: other
+  script: dialect
+  mentions_pain_or_health: false
+- id: u209
+  text: खाना बन गइल
+  intent: other
+  script: dialect
+  mentions_pain_or_health: false
+- id: u210
+  text: किसुन आइल रहलें
+  intent: other
+  script: dialect
+  mentions_pain_or_health: false

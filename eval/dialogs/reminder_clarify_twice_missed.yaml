@@ -1,0 +1,23 @@
+schema_version: 1
+id: reminder_clarify_twice_missed
+flow: medication_reminder
+prior_snoozes: 0
+opening:
+  states: [Greet, Remind, AskTaken]
+  phrase_ids: [greet.reminder, remind.dose, remind.instructions, ask.taken]
+  events: [reminder_sent]
+  notifications: []
+turns:
+  - user: "समझ नहीं आया"
+    states: [Clarify, AskTaken]
+    phrase_ids: [clarify.taken, ask.taken]
+    events: []
+    notifications: []
+  - user: "फिर से बताओ"
+    states: [Missed, NotifyCaregiver, Close]
+    phrase_ids: [ack.missed, close.polite]
+    events: [missed]
+    notifications:
+      - audience: caregiver
+        reason: missed
+        template_id: notify.missed

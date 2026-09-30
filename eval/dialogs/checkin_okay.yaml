@@ -1,0 +1,15 @@
+schema_version: 1
+id: checkin_okay
+flow: daily_checkin
+prior_snoozes: 0
+opening:
+  states: [Greet, AskWellbeing]
+  phrase_ids: [checkin.greet, checkin.ask]
+  events: []
+  notifications: []
+turns:
+  - user: "ठीक हूँ, चल रहा है"
+    states: [Close]
+    phrase_ids: [checkin.okay]
+    events: [checkin_result]
+    notifications: []

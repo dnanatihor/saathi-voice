@@ -1,0 +1,23 @@
+schema_version: 1
+id: checkin_unwell_yes
+flow: daily_checkin
+prior_snoozes: 0
+opening:
+  states: [Greet, AskWellbeing]
+  phrase_ids: [checkin.greet, checkin.ask]
+  events: []
+  notifications: []
+turns:
+  - user: "तबियत ठीक नहीं है"
+    states: [FollowUpUnwell]
+    phrase_ids: [checkin.unwell_offer]
+    events: []
+    notifications: []
+  - user: "हाँ, बात करना चाहूँगा"
+    states: [NotifyCaregiver, Close]
+    phrase_ids: [checkin.notify_ack, close.polite]
+    events: [checkin_result]
+    notifications:
+      - audience: caregiver
+        reason: checkin_unwell
+        template_id: summary.checkin
