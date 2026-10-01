@@ -44,6 +44,7 @@ from saathi.models import (
 )
 from saathi.notify.base import Notifier
 from saathi.phrases import Phrase, load_phrases
+from saathi.privacy import erase_elder
 from saathi.scheduler import advance
 
 
@@ -93,6 +94,7 @@ class ConsentBody(BaseModel):
     purpose: ConsentPurpose
     method: ConsentMethod
     transcript: str | None = None
+    granted: bool = True
 
 
 class TurnBody(BaseModel):
@@ -288,6 +290,15 @@ def create_app(
         session.commit()
         session.refresh(consent)
         return {"id": consent.id}
+
+    @app.delete("/elders/{elder_id}")
+    def erase(
+        elder: Annotated[Elder, Depends(owned_elder)],
+        session: Annotated[Session, Depends(db_session)],
+    ) -> dict[str, bool]:
+        assert elder.id is not None
+        erase_elder(session, elder.id)
+        return {"erased": True}
 
     @app.get("/elders/{elder_id}/adherence")
     def adherence(

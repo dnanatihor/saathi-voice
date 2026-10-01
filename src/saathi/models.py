@@ -48,6 +48,7 @@ class EventType(StrEnum):
     emergency = "emergency"
     notification_sent = "notification_sent"
     consent_recorded = "consent_recorded"
+    erasure = "erasure"
 
 
 _WEEKDAYS = frozenset({"mon", "tue", "wed", "thu", "fri", "sat", "sun"})
@@ -177,6 +178,7 @@ class Consent(SQLModel, table=True):
     recorded_at: datetime = Field(default_factory=utc_now)
     method: ConsentMethod
     transcript: str | None = None
+    granted: bool = True
 
 
 class Session(SQLModel, table=True):
@@ -198,7 +200,7 @@ class Event(SQLModel, table=True):
     __tablename__ = "events"
 
     id: int | None = Field(default=None, primary_key=True)
-    elder_id: int = Field(foreign_key="elders.id")
+    elder_id: int | None = Field(default=None, foreign_key="elders.id")
     session_id: int | None = Field(default=None, foreign_key="sessions.id")
     event_type: EventType
     created_at: datetime = Field(default_factory=utc_now)

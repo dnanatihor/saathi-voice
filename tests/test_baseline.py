@@ -32,13 +32,17 @@ def test_readme_stub_has_name_why_and_planned_quickstart() -> None:
     readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
     assert readme.startswith("# Saathi Voice — ")
     assert "## Why" in readme
-    assert "TODO" not in readme.split("## Quickstart", maxsplit=1)[0]
     why = readme.split("## Why", maxsplit=1)[1].split("##", maxsplit=1)[0].strip()
     assert len(why) > 80
     assert "## Quickstart" in readme
-    assert "Planned" in readme
-    for command in CI_COMMANDS:
-        assert command in readme
+    assert "uv run saathi-demo" in readme
+    assert "![demo](docs/demo.gif)" in readme
+    assert "## How it works" in readme
+    assert "## Results / example output" in readme
+    assert "## Design decisions" in readme
+    assert "## Roadmap" in readme
+    assert "intent accuracy: 0.60" in readme
+    assert "emergency recall: 1.00" in readme
     assert "CI" in readme
     assert "Apache-2.0" in readme
 

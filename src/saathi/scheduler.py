@@ -28,9 +28,11 @@ from saathi.models import (
 from saathi.notify.base import Notifier
 from saathi.notify.dispatch import send_logged
 from saathi.phrases import Phrase, render
+from saathi.privacy import calls_allowed, purge_old_transcripts
 
 CATCH_UP = timedelta(minutes=30)
 _TICK_JOB = "saathi-tick"
+_RETENTION_JOB = "saathi-retention"
 
 
 class Clock:
@@ -51,6 +53,19 @@ def tick() -> None:
     return None
 
 
+def retention_job(database_url: str, retention_days: int = 30) -> None:
+    """Daily clear of transcripts older than the retention window."""
+    from saathi.db import db_session, make_engine
+
+    engine = make_engine(database_url)
+    with db_session(engine) as db:
+        purge_old_transcripts(
+            db,
+            now=datetime.now(ZoneInfo("Asia/Kolkata")),
+            retention_days=retention_days,
+        )
+
+
 def register_tick(database_url: str, timezone: str) -> BackgroundScheduler:
     """One persistent APScheduler job. The grace window is the 30 minute catch-up."""
     store = SQLAlchemyJobStore(url=database_url)
@@ -61,6 +76,13 @@ def register_tick(database_url: str, timezone: str) -> BackgroundScheduler:
         id=_TICK_JOB,
         replace_existing=True,
         misfire_grace_time=int(CATCH_UP.total_seconds()),
+    )
+    scheduler.add_job(
+        retention_job,
+        CronTrigger(hour=3, minute=0, timezone=timezone),
+        id=_RETENTION_JOB,
+        kwargs={"database_url": database_url, "retention_days": 30},
+        replace_existing=True,
     )
     return scheduler
 
@@ -97,6 +119,17 @@ def _due_slots(
             continue
         if scheduled_for > now:
             continue
+        elder_id = _elder_id(db, schedule)
+        if not calls_allowed(db, elder_id):
+            db.add(
+                DoseOccurrence(
+                    schedule_id=_required(schedule.id),
+                    scheduled_for=scheduled_for.isoformat(),
+                    outcome="consent_withdrawn",
+                    session_id=None,
+                )
+            )
+            continue
         late = now - scheduled_for
         if late <= CATCH_UP:
             call = _open_reminder(db, schedule, phrases, prior_snoozes=0, now=now)
@@ -110,7 +143,6 @@ def _due_slots(
             )
             opened.append(call)
         else:
-            elder_id = _elder_id(db, schedule)
             db.add(
                 Event(
                     elder_id=elder_id,
@@ -142,6 +174,10 @@ def _due_snoozes(
     for reminder in reminders:
         due_at = datetime.fromisoformat(reminder.due_at)
         if due_at > now:
+            continue
+        if not calls_allowed(db, reminder.elder_id):
+            reminder.done = True
+            db.add(reminder)
             continue
         if now - due_at <= CATCH_UP:
             schedule = db.get(Schedule, reminder.schedule_id)

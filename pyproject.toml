@@ -12,6 +12,9 @@ dependencies = [
     "uvicorn>=0.32",
 ]
 
+[project.scripts]
+saathi-demo = "saathi.demo:main"
+
 [dependency-groups]
 dev = [
     "mypy>=1.18",

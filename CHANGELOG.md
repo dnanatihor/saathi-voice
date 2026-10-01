@@ -8,6 +8,7 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Phase 6 retention, erasure, consent withdrawal, privacy notes, and a one-command quickstart.
 - Phase 5 scripted reminder call with a DTMF fallback, after documenting telephony registration steps.
 - Phase 4 browser voice: elder page with बात करें, WebSocket reminder, and measured reply latency.
 - Phase 3 offline NLU report, LangChain structured-output adapter, and a local speech-provider harness (see ADR 0002).
