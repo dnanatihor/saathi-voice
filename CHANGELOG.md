@@ -8,6 +8,7 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Phase 5 scripted reminder call with a DTMF fallback, after documenting telephony registration steps.
 - Phase 4 browser voice: elder page with बात करें, WebSocket reminder, and measured reply latency.
 - Phase 3 offline NLU report, LangChain structured-output adapter, and a local speech-provider harness (see ADR 0002).
 - Phase 2 scheduler, Telegram and email notifiers, caregiver API, and dashboard adherence grid.

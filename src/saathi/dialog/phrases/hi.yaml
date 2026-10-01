@@ -61,6 +61,9 @@ phrases:
   consent.thanks:
     text: "धन्यवाद {honorific}।"
     spoken: true
+  ask.dtmf:
+    text: "दवा ले ली हो तो 1 दबाएँ"
+    spoken: true
   summary.checkin:
     text: "{honorific} ने कहा, {elder_words}"
     spoken: false
