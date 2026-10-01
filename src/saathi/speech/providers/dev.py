@@ -54,6 +54,10 @@ class DropLastSTT:
 
 
 class SilentTTS:
+    """Yields a silent WAV. The spoken words themselves stay in the phrase file."""
+
     async def synthesize_stream(self, text: str, lang: str, rate: float) -> AsyncIterator[bytes]:
         del lang, rate
-        yield text.encode("utf-8")
+        from saathi.speech.wav import silence_wav
+
+        yield silence_wav(text)

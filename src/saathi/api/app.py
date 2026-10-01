@@ -1,11 +1,13 @@
 """Caregiver routes: profiles, adherence, and a text simulate-call."""
 
-from collections.abc import Generator
+import base64
+import json
+from collections.abc import AsyncIterator, Generator
 from datetime import date, datetime
 from typing import Annotated
 from zoneinfo import ZoneInfo
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from sqlalchemy import Engine
 from sqlmodel import Session, select
@@ -20,6 +22,7 @@ from saathi.api.auth import (
     redeem_link_code,
     verify_password,
 )
+from saathi.channels.voice import VoiceCall
 from saathi.flow import apply_user_text, open_checkin
 from saathi.models import (
     Caregiver,
@@ -372,4 +375,58 @@ def create_app(
         opened = advance(session, at, app.state.phrases, notifier=app.state.notifier)
         return {"opened": len(opened)}
 
+    @app.websocket("/voice")
+    async def voice(socket: WebSocket) -> None:
+        await socket.accept()
+        call = VoiceCall(app.state.phrases)
+        opening, audio = await call.opening()
+        await socket.send_json(_voice_payload(opening, audio, latency_s=None))
+        try:
+            while True:
+                chunks = await _audio_until_end(socket)
+                heard, beat, reply, latency = await call.hear(_chunks(chunks))
+                del heard
+                await socket.send_json(_voice_payload(beat, reply, latency_s=latency))
+                if "Close" in beat.states:
+                    break
+        except WebSocketDisconnect:
+            return
+
     return app
+
+
+def _voice_payload(beat: object, audio: bytes, *, latency_s: float | None) -> dict[str, object]:
+    from saathi.dialog.graph import Beat
+
+    if not isinstance(beat, Beat):
+        raise TypeError("beat required")
+    payload: dict[str, object] = {
+        "type": "reply",
+        "spoken": beat.spoken,
+        "states": beat.states,
+        "audio_b64": base64.b64encode(audio).decode("ascii"),
+    }
+    if latency_s is not None:
+        payload["latency_s"] = latency_s
+    return payload
+
+
+async def _audio_until_end(socket: WebSocket) -> list[bytes]:
+    chunks: list[bytes] = []
+    while True:
+        message = await socket.receive()
+        if message.get("type") == "websocket.disconnect":
+            raise WebSocketDisconnect
+        raw = message.get("bytes")
+        if isinstance(raw, bytes) and raw:
+            chunks.append(raw)
+        text = message.get("text")
+        if isinstance(text, str) and text:
+            loaded = json.loads(text)
+            if isinstance(loaded, dict) and loaded.get("type") == "end":
+                return chunks
+
+
+async def _chunks(chunks: list[bytes]) -> AsyncIterator[bytes]:
+    for chunk in chunks:
+        yield chunk

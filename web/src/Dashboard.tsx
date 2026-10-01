@@ -36,7 +36,7 @@ export function Dashboard({ cells }: { cells: AdherenceCell[] }) {
           <input value={label} onChange={(event) => setLabel(event.target.value)} />
         </label>
         <p>Preview: {spokenPreview(honorific, label)}</p>
-        <p>Audio preview starts when a speech provider is configured.</p>
+        <p>The elder page plays this line aloud.</p>
       </section>
       <section aria-label="Contacts">
         <h2>Contacts</h2>

@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import { AdherenceGrid } from "./AdherenceGrid";
 import { Dashboard, spokenPreview } from "./Dashboard";
+import { ElderCall } from "./ElderCall";
 
 const cells = [
   { day: "mon", date: "2026-09-28", time: "09:00", label: "बीपी की दवा", status: "taken" },
@@ -15,6 +16,11 @@ test("the dashboard shows the weekly adherence grid", () => {
   expect(screen.getByRole("cell", { name: "missed" })).toBeTruthy();
   expect(screen.getByRole("button", { name: "Export data" })).toBeTruthy();
   expect(screen.getByRole("button", { name: "Erase elder data" })).toBeTruthy();
+});
+
+test("the elder page has one talk button", () => {
+  render(<ElderCall />);
+  expect(screen.getByRole("button", { name: "बात करें" })).toBeTruthy();
 });
 
 test("spoken label preview uses the honorific and label", () => {
