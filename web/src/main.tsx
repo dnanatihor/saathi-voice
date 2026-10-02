@@ -7,7 +7,7 @@ const root = document.getElementById("root");
 if (root) {
   createRoot(root).render(
     <StrictMode>
-      {window.location.hash === "#elder" ? <ElderCall /> : <Dashboard cells={[]} />}
+      {window.location.hash === "#dashboard" ? <Dashboard cells={[]} /> : <ElderCall />}
     </StrictMode>,
   );
 }

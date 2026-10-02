@@ -8,6 +8,8 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- A caregiver can upload a short family clip that plays after the check-in greeting.
+- Scheduled calls start only when a reminders consent grant is on record.
 - Phase 6 retention, erasure, consent withdrawal, privacy notes, and a one-command quickstart.
 - Phase 5 scripted reminder call with a DTMF fallback, after documenting telephony registration steps.
 - Phase 4 browser voice: elder page with बात करें, WebSocket reminder, and measured reply latency.

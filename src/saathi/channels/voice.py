@@ -25,9 +25,15 @@ class VoiceCall:
         self._tts = tts if tts is not None else SilentTTS()
         self._rate = rate
 
+    def begin(self) -> Beat:
+        return self._session.start()
+
     async def opening(self) -> tuple[Beat, bytes]:
-        beat = self._session.start()
-        return beat, await self._audio(beat.spoken)
+        beat = self.begin()
+        return beat, await self.speak(beat.spoken)
+
+    async def speak(self, lines: list[str]) -> bytes:
+        return await self._audio(lines)
 
     async def hear(self, audio: AsyncIterator[bytes]) -> tuple[str, Beat, bytes, float]:
         started = perf_counter()
@@ -36,8 +42,7 @@ class VoiceCall:
             parts.append(transcript.text)
         heard = " ".join(parts).strip()
         beat = self._session.user_turn(heard)
-        reply = await self._audio(beat.spoken)
-        return heard, beat, reply, perf_counter() - started
+        return heard, beat, b"", perf_counter() - started
 
     async def _audio(self, lines: list[str]) -> bytes:
         text = " ".join(lines)

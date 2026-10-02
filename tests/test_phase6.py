@@ -149,6 +149,46 @@ def test_retention_deletes_old_transcripts_and_keeps_events(tmp_path: Path) -> N
         assert db.exec(select(Event)).one().event_type == EventType.taken
 
 
+def test_a_schedule_without_consent_does_not_call(tmp_path: Path) -> None:
+    engine = _engine(tmp_path)
+    with db_session(engine) as db:
+        caregiver = Caregiver(
+            login="anita.example@example.com",
+            relationship="beti",
+            notification_channel=NotificationChannel.telegram,
+        )
+        db.add(caregiver)
+        db.commit()
+        db.refresh(caregiver)
+        assert caregiver.id is not None
+        elder = Elder(caregiver_id=caregiver.id, display_name="श्याम लाल", honorific="बाबूजी")
+        db.add(elder)
+        db.commit()
+        db.refresh(elder)
+        assert elder.id is not None
+        medication = Medication(
+            elder_id=elder.id,
+            name="नीली दवा",
+            spoken_label="बीपी की दवा",
+            instructions="खाने के बाद",
+        )
+        db.add(medication)
+        db.commit()
+        db.refresh(medication)
+        assert medication.id is not None
+        db.add(
+            Schedule(
+                medication_id=medication.id,
+                times_of_day=encode_times(["09:00"]),
+                days=encode_days(["mon"]),
+                start_date=date(2026, 9, 1),
+            )
+        )
+        db.commit()
+        opened = advance(db, MONDAY, load_phrases(), notifier=_Quiet())
+        assert opened == []
+
+
 def test_withdrawn_consent_skips_the_scheduled_call(tmp_path: Path) -> None:
     engine = _engine(tmp_path)
     with db_session(engine) as db:

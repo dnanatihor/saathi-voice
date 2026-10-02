@@ -6,6 +6,8 @@ from saathi.eval_report import nlu_metrics, speech_table
 from saathi.paths import REPO_ROOT
 from saathi.speech.base import STTProvider
 from saathi.speech.providers.dev import DropLastSTT, IdentitySTT, SubstitutionSTT
+from saathi.speech.providers.sarvam import SarvamTTS
+from saathi.speech.wav import silence_wav
 
 
 def test_speech_protocols_are_implemented() -> None:
@@ -27,6 +29,25 @@ def test_speech_harness_reports_real_differences() -> None:
     for row in rows.values():
         assert float(row["latency_p95_s"]) < 3.5
     assert float(rows["drop-last"]["wer"]) != float(rows["substitution"]["wer"])
+
+
+def test_sarvam_tts_uses_the_injected_transport() -> None:
+    clip = silence_wav("नमस्ते")
+
+    def transport(api_key: str, text: str, rate: float) -> bytes:
+        assert api_key == "test-key"
+        assert text == "नमस्ते"
+        assert rate == 0.85
+        return clip
+
+    async def once() -> bytes:
+        audio = SarvamTTS("test-key", transport)
+        chunks = [chunk async for chunk in audio.synthesize_stream("नमस्ते", "hi", 0.85)]
+        return b"".join(chunks)
+
+    import asyncio
+
+    assert asyncio.run(once()) == clip
 
 
 def test_asr_directory_has_a_wav_per_clip() -> None:

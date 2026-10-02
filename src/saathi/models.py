@@ -118,6 +118,7 @@ class Elder(SQLModel, table=True):
     call_window_start: str = "08:00"
     call_window_end: str = "20:00"
     timezone: str = "Asia/Kolkata"
+    family_message_path: str = ""
 
     @field_validator("language")
     @classmethod

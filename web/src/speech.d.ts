@@ -10,6 +10,7 @@ interface SpeechListener {
   lang: string;
   onresult: ((event: SpeechRecognitionEvent) => void) | null;
   start: () => void;
+  stop: () => void;
 }
 
 interface SpeechConstructor {

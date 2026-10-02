@@ -12,6 +12,10 @@ from saathi.db import db_session, init_db, make_engine
 from saathi.flow import apply_user_text
 from saathi.models import (
     Caregiver,
+    Consent,
+    ConsentMethod,
+    ConsentPurpose,
+    ConsentSubject,
     Contact,
     Elder,
     Event,
@@ -63,6 +67,17 @@ def _household(tmp_path: object) -> tuple[object, int, int]:
         db.commit()
         db.refresh(elder)
         assert elder.id is not None
+        db.add(
+            Consent(
+                elder_id=elder.id,
+                subject=ConsentSubject.caregiver,
+                subject_name="Anita",
+                purpose=ConsentPurpose.reminders,
+                method=ConsentMethod.dashboard_checkbox,
+                granted=True,
+            )
+        )
+        db.commit()
         medication = Medication(
             elder_id=elder.id,
             name="नीली दवा",

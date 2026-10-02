@@ -4,10 +4,19 @@ import base64
 import json
 from collections.abc import AsyncIterator, Generator
 from datetime import date, datetime
+from pathlib import Path
 from typing import Annotated
 from zoneinfo import ZoneInfo
 
-from fastapi import Depends, FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import (
+    Depends,
+    FastAPI,
+    Header,
+    HTTPException,
+    Request,
+    WebSocket,
+    WebSocketDisconnect,
+)
 from pydantic import BaseModel
 from sqlalchemy import Engine
 from sqlmodel import Session, select
@@ -23,6 +32,7 @@ from saathi.api.auth import (
     verify_password,
 )
 from saathi.channels.voice import VoiceCall
+from saathi.family import FamilyMessageError, playback, save_family_message
 from saathi.flow import apply_user_text, open_checkin
 from saathi.models import (
     Caregiver,
@@ -43,8 +53,9 @@ from saathi.models import (
     Session as Call,
 )
 from saathi.notify.base import Notifier
+from saathi.paths import REPO_ROOT
 from saathi.phrases import Phrase, load_phrases
-from saathi.privacy import erase_elder
+from saathi.privacy import erase_elder, purpose_allowed
 from saathi.scheduler import advance
 
 
@@ -113,6 +124,8 @@ def create_app(
     secret: str,
     phrases: dict[str, Phrase] | None = None,
     timezone: str = "Asia/Kolkata",
+    family_dir: Path | None = None,
+    tts: object | None = None,
 ) -> FastAPI:
     app = FastAPI(title="Saathi Voice")
     app.state.engine = engine
@@ -120,6 +133,10 @@ def create_app(
     app.state.secret = secret
     app.state.phrases = phrases if phrases is not None else load_phrases()
     app.state.timezone = timezone
+    if family_dir is None:
+        family_dir = REPO_ROOT / "recordings" / "family"
+    app.state.family_dir = family_dir
+    app.state.tts = tts
 
     def db_session() -> Generator[Session, None, None]:
         with Session(engine) as session:
@@ -291,6 +308,23 @@ def create_app(
         session.refresh(consent)
         return {"id": consent.id}
 
+    @app.post("/elders/{elder_id}/family-message")
+    async def upload_family_message(
+        elder: Annotated[Elder, Depends(owned_elder)],
+        session: Annotated[Session, Depends(db_session)],
+        request: Request,
+    ) -> dict[str, bool]:
+        assert elder.id is not None
+        audio = await request.body()
+        try:
+            path = save_family_message(app.state.family_dir, elder.id, audio)
+        except FamilyMessageError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        elder.family_message_path = str(path)
+        session.add(elder)
+        session.commit()
+        return {"stored": True}
+
     @app.delete("/elders/{elder_id}")
     def erase(
         elder: Annotated[Elder, Depends(owned_elder)],
@@ -351,9 +385,19 @@ def create_app(
     def simulate_checkin(
         elder: Annotated[Elder, Depends(owned_elder)],
         session: Annotated[Session, Depends(db_session)],
-    ) -> dict[str, int | None]:
+    ) -> dict[str, object]:
+        assert elder.id is not None
+        if not purpose_allowed(session, elder.id, ConsentPurpose.checkins):
+            raise HTTPException(status_code=409, detail="consent required")
         call = open_checkin(session, elder, app.state.phrases)
-        return {"session_id": call.id}
+        clip: bytes | None = None
+        message = Path(elder.family_message_path)
+        if elder.family_message_path and message.is_file():
+            clip = message.read_bytes()
+        return {
+            "session_id": call.id,
+            "playback": playback(call.transcript.split("\n"), clip),
+        }
 
     @app.post("/sessions/{session_id}/turns")
     def turn(
@@ -389,15 +433,21 @@ def create_app(
     @app.websocket("/voice")
     async def voice(socket: WebSocket) -> None:
         await socket.accept()
-        call = VoiceCall(app.state.phrases)
-        opening, audio = await call.opening()
-        await socket.send_json(_voice_payload(opening, audio, latency_s=None))
+        call = VoiceCall(app.state.phrases, tts=app.state.tts)
         try:
+            opening = call.begin()
+            await _send_voice(socket, opening, b"", latency_s=None)
+            await _send_voice(
+                socket, opening, await call.speak(opening.spoken), latency_s=None, words=False
+            )
             while True:
                 chunks = await _audio_until_end(socket)
                 heard, beat, reply, latency = await call.hear(_chunks(chunks))
-                del heard
-                await socket.send_json(_voice_payload(beat, reply, latency_s=latency))
+                del heard, reply
+                await _send_voice(socket, beat, b"", latency_s=latency)
+                await _send_voice(
+                    socket, beat, await call.speak(beat.spoken), latency_s=None, words=False
+                )
                 if "Close" in beat.states:
                     break
         except WebSocketDisconnect:
@@ -406,14 +456,27 @@ def create_app(
     return app
 
 
-def _voice_payload(beat: object, audio: bytes, *, latency_s: float | None) -> dict[str, object]:
+async def _send_voice(
+    socket: WebSocket,
+    beat: object,
+    audio: bytes,
+    *,
+    latency_s: float | None,
+    words: bool = True,
+) -> None:
+    await socket.send_json(_voice_payload(beat, audio, latency_s=latency_s, words=words))
+
+
+def _voice_payload(
+    beat: object, audio: bytes, *, latency_s: float | None, words: bool = True
+) -> dict[str, object]:
     from saathi.dialog.graph import Beat
 
     if not isinstance(beat, Beat):
         raise TypeError("beat required")
     payload: dict[str, object] = {
         "type": "reply",
-        "spoken": beat.spoken,
+        "spoken": beat.spoken if words else [],
         "states": beat.states,
         "audio_b64": base64.b64encode(audio).decode("ascii"),
     }

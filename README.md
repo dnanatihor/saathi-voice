@@ -61,7 +61,6 @@ The accuracy figure is the offline classifier in CI, not a hosted model. See `do
 - Caregiver interviews, which have not been run, still decide calls versus the app.
 - A production speech provider, after live recordings and listener ratings.
 - A live telephony provider, after the registration steps in `docs/telephony.md`.
-- Optional family voice messages during a call.
 
 ## Licence
 

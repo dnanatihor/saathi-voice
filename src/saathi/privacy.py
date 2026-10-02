@@ -5,6 +5,7 @@ from datetime import UTC, datetime, timedelta
 from sqlmodel import Session as DbSession
 from sqlmodel import select
 
+from saathi.family import delete_family_file
 from saathi.models import (
     Consent,
     ConsentPurpose,
@@ -20,18 +21,19 @@ from saathi.models import (
 )
 
 
-def calls_allowed(db: DbSession, elder_id: int) -> bool:
-    """The latest reminders row wins. No row means calls still run, as in Phase 2."""
+def purpose_allowed(db: DbSession, elder_id: int, purpose: ConsentPurpose) -> bool:
+    """The latest row for that purpose wins. No row means the call does not start."""
     rows = db.exec(
-        select(Consent).where(
-            Consent.elder_id == elder_id,
-            Consent.purpose == ConsentPurpose.reminders,
-        )
+        select(Consent).where(Consent.elder_id == elder_id, Consent.purpose == purpose)
     ).all()
     if not rows:
-        return True
+        return False
     latest = max(rows, key=lambda row: row.id or 0)
     return latest.granted
+
+
+def calls_allowed(db: DbSession, elder_id: int) -> bool:
+    return purpose_allowed(db, elder_id, ConsentPurpose.reminders)
 
 
 def purge_old_transcripts(db: DbSession, *, now: datetime, retention_days: int) -> int:
@@ -86,6 +88,7 @@ def erase_elder(db: DbSession, elder_id: int) -> None:
         db.delete(medication)
     elder = db.get(Elder, elder_id)
     if elder is not None:
+        delete_family_file(elder.family_message_path)
         db.delete(elder)
     db.commit()
     db.add(Event(elder_id=None, session_id=None, event_type=EventType.erasure, payload_json="{}"))

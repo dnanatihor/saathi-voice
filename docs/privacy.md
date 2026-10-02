@@ -8,7 +8,7 @@ Saathi stores a caregiver's schedule, the elder's spoken replies, and whether a 
 
 ## Consent
 
-Consent rows are append-only. A later row for the same purpose with `granted: false` withdraws it. The scheduler reads the latest reminders row and does not open a call after withdrawal. Existing rows are not edited.
+Consent rows are append-only. A later row for the same purpose with `granted: false` withdraws it. The scheduler and check-in route read the latest row for that purpose. With no grant, or after withdrawal, the call does not start. Existing rows are not edited.
 
 ## Retention
 

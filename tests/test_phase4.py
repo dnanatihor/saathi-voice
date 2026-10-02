@@ -27,10 +27,13 @@ def test_voice_reminder_finishes_under_the_latency_budget() -> None:
         with _app().websocket_connect("/voice") as socket:
             opening = socket.receive_json()
             assert "क्या आपने बीपी की दवा ले ली?" in opening["spoken"]
-            assert opening["audio_b64"]
+            audio = socket.receive_json()
+            assert audio["audio_b64"]
             socket.send_bytes("हाँ, ले ली".encode())
             socket.send_text(json.dumps({"type": "end"}))
             reply = socket.receive_json()
+            if not reply["spoken"]:
+                reply = socket.receive_json()
             latencies.append(float(reply["latency_s"]))
             assert "बहुत अच्छा बाबूजी। धन्यवाद।" in reply["spoken"]
             assert "ठीक है बाबूजी। अपना ख्याल रखिए।" in reply["spoken"]

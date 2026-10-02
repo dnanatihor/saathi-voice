@@ -14,8 +14,8 @@ SPEC.md §8 says consent records are immutable and that withdrawing consent stop
 
 ## Decision
 
-Withdrawal is a new `Consent` row with `granted` false. Older rows stay as they were written. If an elder has no reminders row, scheduled calls still run, so the Phase 2 fixtures keep working. Erasure deletes consent rows instead of editing them.
+Withdrawal is a new `Consent` row with `granted` false. Older rows stay as they were written. A reminder or check-in starts only when the latest row for that purpose has `granted` true. Erasure deletes consent rows instead of editing them.
 
 ## Consequences
 
-A caller can see the history of grants and withdrawals. The scheduler only looks at the latest reminders row.
+A caller can see the history of grants and withdrawals. The scheduler and the check-in route look at the latest row for that purpose. Phase 2 fixtures record a reminders grant before the test clock fires.
